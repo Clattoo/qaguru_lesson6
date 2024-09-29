@@ -37,8 +37,36 @@ public class DemoQaPageRegistrationTests extends TestBase {
                         .checkResults("Picture", "1.jpg")
                         .checkResults("Address", "Somewhere Street 21/23")
                         .checkResults("State and City", "Haryana Karnal");
+    }
 
-        System.out.println("Тест пройден успешно");
+    @Test
+    public void successfulMinDataRegistrationTest() {
+        registrationPage.openPage()
+                .setFirstName("Ivan")
+                .setLastName("Petrov")
+                .setGender("Female")
+                .setPhoneNumber("89112312323")
+                .clickSubmit();
+
+        // Проверка результатов теста
+
+        registrationPage.checkResults("Student Name", "Ivan Petrov")
+                .checkResults("Gender", "Female")
+                .checkResults("Mobile", "8911231232");
+    }
+
+    @Test
+    public void negativeRegistrationTest() {
+        registrationPage.openPage()
+                .setFirstName("Ivan")
+                .setLastName("Petrov")
+                .setGender("Female")
+                .setPhoneNumber("ABSCDS")
+                .clickSubmit();
+
+        // Проверка результатов теста
+
+        registrationPage.checkUnsuccessfulRegistration();
     }
 
 }

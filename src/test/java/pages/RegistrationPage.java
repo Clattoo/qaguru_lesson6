@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -10,7 +11,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
 
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
 
             lastNameInput = $("#lastName"),
 
@@ -34,7 +35,10 @@ public class RegistrationPage {
 
             userCity = $("#react-select-4-input"),
 
-            submitButton = $("#submit");
+            submitButton = $("#submit"),
+
+            modalTitle = $(".modal-title");
+
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
@@ -132,4 +136,10 @@ public class RegistrationPage {
 
         return this;
     }
+
+    public void checkUnsuccessfulRegistration() {
+        modalTitle.shouldNotBe(exist);
+    }
+
+
 }
