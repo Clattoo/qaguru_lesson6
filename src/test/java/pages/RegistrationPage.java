@@ -20,7 +20,21 @@ public class RegistrationPage {
 
             userPhoneNumberInput = $("#userNumber"),
 
-            calendarInput = $("#dateOfBirthInput");
+            calendarInput = $("#dateOfBirthInput"),
+
+            subjectInput = $("#subjectsInput"),
+
+            hobbiesWrapper = $("#hobbiesWrapper"),
+
+            userUploadPicture = $("#uploadPicture"),
+
+            userCurrentAddress = $("#currentAddress"),
+
+            userState = $("#react-select-3-input"),
+
+            userCity = $("#react-select-4-input"),
+
+            submitButton = $("#submit");
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
@@ -68,6 +82,46 @@ public class RegistrationPage {
         calendarComponent.setDate(day, month, year);
 
         return this;
+    }
+
+    public RegistrationPage setSubjects(String value) {
+        subjectInput.setValue(value).pressEnter();
+
+        return this;
+    }
+
+    public RegistrationPage setHobbies(String value) {
+        hobbiesWrapper.$(byText(value)).click();
+
+        return this;
+    }
+
+    public RegistrationPage setUserUploadPicture(String value) {
+        userUploadPicture.uploadFromClasspath(value);
+
+        return this;
+    }
+
+    public RegistrationPage setUserCurrentAddress(String value) {
+        userCurrentAddress.setValue(value);
+
+        return this;
+    }
+
+    public RegistrationPage setUserState(String value) {
+        userState.setValue(value).pressEnter();
+
+        return this;
+    }
+
+    public RegistrationPage setUserCity(String value) {
+        userCity.setValue(value).pressEnter();
+
+        return this;
+    }
+
+    public void clickSubmit() {
+        submitButton.click();
     }
 
     public RegistrationPage checkResults (String key, String value) {
