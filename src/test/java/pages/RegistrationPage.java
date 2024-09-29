@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.TableResultsComponent;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
@@ -39,6 +40,7 @@ public class RegistrationPage {
 
             modalTitle = $(".modal-title");
 
+    TableResultsComponent tableResultsComponent = new TableResultsComponent();
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
@@ -129,10 +131,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage checkResults (String key, String value) {
-
-        $(".table-responsive").$(byText(key)).parent()
-                .shouldHave(text(value));
-
+        tableResultsComponent.checkResultTable(key, value);
 
         return this;
     }
